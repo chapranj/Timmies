@@ -1,0 +1,11 @@
+majorButtons,Hot Drinks,Cold Drinks,Bagels,Donuts & Timbits,Muffins,Croissants,Pastries,Cookies,BreakFast,Lunch & Dinner
+semiHot,Small, Medium, Large, X-Large
+semisemiHot,Coffee,French, SteepedTea,HotChoc
+semiCold,Small, Medium, Large, X-Large,
+semisemiCold, Iced Coffee, Iced Capp,Quenchers
+Everything , Plain Bagel, Four Cheese,12 Grain
+ChocDip, ChocGlazed, HoneyCruller
+ChocChipMuffin, BlueberryMuffin, RaisinBranMuffin
+Plain Croissant, Cheese Croissant, Everything Croissant
+
+
