@@ -14,6 +14,6 @@ public class Coffee extends HotBeverage{
 
     @Override
     public String toString() {
-        return "Medium double double "+ this.getCalories() +"Cals for "+ this.getPrice();
+        return "Coffee"+ this.getCalories() +"Cals for "+ this.getPrice();
     }
 }

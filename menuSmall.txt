@@ -1,11 +1,12 @@
-majorButtons,Hot Drinks,Cold Drinks,Bagels,Donuts & Timbits,Muffins,Croissants,Pastries,Cookies,BreakFast,Lunch & Dinner
-semiHot,Small, Medium, Large, X-Large
-semisemiHot,Coffee,French, SteepedTea,HotChoc
-semiCold,Small, Medium, Large, X-Large,
-semisemiCold, Iced Coffee, Iced Capp,Quenchers
-Everything , Plain Bagel, Four Cheese,12 Grain
-ChocDip, ChocGlazed, HoneyCruller
-ChocChipMuffin, BlueberryMuffin, RaisinBranMuffin
-Plain Croissant, Cheese Croissant, Everything Croissant
-
-
+majorButtons,Hot Drinks,Cold Drinks,Bagels,Donuts & Timbits,Muffins,Croissants,Cookies,BreakFast,Lunch & Dinner
+semiHot,Small ,Medium ,Large ,X-Large ,
+semisemiHot,Coffee,French,SteepedTea,HotChoc
+semiCold,Small ,Medium ,Large ,
+semisemiCold,IcedCoffee,IcedCapp,PeachQuencher,WatermelonQuencher
+food1,Everything Bagel,Plain Bagel,Four Cheese Bagel,12-GrainBagel
+food2,Choc Dip,Choc Glazed,Honey Cruller
+food3,ChocChip Muffin,Blueberry Muffin,Fruit Explosion Muffin,Raisin Bran Muffin
+food4,Plain Croissant,Cheese Croissant,Everything Croissant
+food5,Chocolate Chunk,Dream Cookie
+food6,Sausage Biscuit,Sausage English Muffin,Sausage Bagel,Farmers Egg,Farmers Sausage
+food7,Crispy Chicken,SlowCooked Chicken,B.L.T,Chicken Bacon,Ham&Cheddar

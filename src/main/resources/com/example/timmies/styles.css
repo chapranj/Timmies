@@ -20,11 +20,11 @@
     -fx-font-size: 14px;
 }
 .semi-Menu-Button{
-    -fx-pref-width: 70px;
+    -fx-pref-width: 130px;
     -fx-pref-height: 70px;
     -fx-background-color: lightgreen;
     -fx-text-fill: white;
-    -fx-font-size: 10px;
+    -fx-font-size: 14px;
 }
 
 .radio-Menu-Button{
@@ -37,4 +37,12 @@
 
 .major-Menu-Button:clicked{
     -fx-background-color: white;
+}
+
+.label-Display{
+    -fx-background-color: #f0f0f0;
+    -fx-padding: 5px;
+    -fx-text-fill: black;
+    -fx-font-size: 14;
+    -fx-font-family: "Arial";
 }

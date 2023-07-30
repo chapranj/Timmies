@@ -1,4 +1,4 @@
-package com.example.timmies.TimsItems;
+package com.example.timmies;
 
 public interface Items {
     double getPrice();

@@ -1,6 +1,6 @@
 package com.example.timmies.TimsConsumables.HotBeverages;
 
-import com.example.timmies.TimsConsumables.Consumables;
+import com.example.timmies.Consumables;
 
 public abstract class HotBeverage implements Consumables {
 
