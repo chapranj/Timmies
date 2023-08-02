@@ -33,6 +33,8 @@ public class PaymentHandler extends ButtonClassHC{
     static Button buttonClickedPreviously = null;
 
 
+    private static Timeline tm;
+
 
     public static Label amtGiven = new Label("Enter amount paid: ");
 
@@ -86,6 +88,8 @@ public class PaymentHandler extends ButtonClassHC{
         Text paymentAnswer = new Text();
         Text changeAnswer = new Text();
         Text errorText = new Text();
+//        errorText.setText("");
+
         paymentAnswer.getStyleClass().add("paymentTexts");
         changeAnswer.getStyleClass().add("paymentTexts");
         errorText.getStyleClass().add("errorTexts");
@@ -99,7 +103,8 @@ public class PaymentHandler extends ButtonClassHC{
         }
         else {
             paymentContainer.getChildren().clear();
-            paymentContainer.getChildren().addAll(amtGiven,amtGivenNumber,proceedToPayButton,paymentAnswer,changeAnswer);
+            paymentContainer.getChildren().addAll(amtGiven,amtGivenNumber,proceedToPayButton,paymentAnswer,
+                    changeAnswer,errorText);
         }
 
 
@@ -182,7 +187,10 @@ public class PaymentHandler extends ButtonClassHC{
                 System.out.println("go back button clicked");
 //                paymentPane.getChildren().clear();
                 TimsPosHC.wholeContainer.getChildren().remove(paymentPane);
+                System.out.println(paymentPane.getChildren());
+                System.out.println(paymentContainer.getChildren());
                 TimsPosHC.wholeContainer.getChildren().addAll(majorMenu, semiMenu);
+                errorText.setText("");
             });
 
             proceedToPayButton.setOnAction(actionEvent -> {
@@ -190,6 +198,7 @@ public class PaymentHandler extends ButtonClassHC{
                 System.out.println(calcTotal);
                 System.out.println("proceedToPay button clicked");
                 if (Double.parseDouble(amtGivenNumber.getText()) >= calcTotal) {
+                    System.out.println("enough");
                     paymentAnswer.setText("Payment Processed..generating receipt.");
                     System.out.println("THE CHANGE: "+(Double.parseDouble(amtGivenNumber.getText()) - ButtonClassHC.calcTotal));
                     changeAnswer.setText("Change Given " + deciFor.format(Double.parseDouble(amtGivenNumber.getText()) - ButtonClassHC.calcTotal));
@@ -239,13 +248,15 @@ public class PaymentHandler extends ButtonClassHC{
                     calcTotal=0;
                     paymentButtonCheck();
 
-                }else {
-                    errorText.setText("Not Enough to complete order!");
-                    Timeline tm= new Timeline(new KeyFrame(Duration.seconds(2),new KeyValue(errorText.textProperty(),
-                            "")));
-                    tm.setOnFinished(actionEvent1 -> errorText.setText(""));
+                }
+                else {
+                    errorText.setText("Not Enough to Complete the order!");
+                    Timeline tm = new Timeline(new KeyFrame(Duration.seconds(2),
+                            new KeyValue(errorText.textProperty(),"")));
+                    tm.setOnFinished(actionEvent1 -> {
+                        errorText.setText("");
+                    });
                     tm.play();
-
                 }
 
             });

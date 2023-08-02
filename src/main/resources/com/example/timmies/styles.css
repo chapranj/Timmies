@@ -82,7 +82,7 @@
     -fx-font-size: 16px;
 }
 .errorTexts{
-    -fx-text-fill:white;
+    -fx-font-color:yellow;
     -fx-font-weight: bold;
     -fx-font-size: 16px;
 }

@@ -31,8 +31,8 @@ public class ButtonClassHC extends TimsPosHC {
     public static ToggleGroup sMLX = new ToggleGroup();
 
     public static Button cancelButton;
-    public static String filename= "starbucks.txt";
-    public static String priceFileName="priceStarbucks.txt";
+    public static String filename= "menuSmall.txt";
+    public static String priceFileName="prices.txt";
     public static String titleName="Starbucks";
 
 
