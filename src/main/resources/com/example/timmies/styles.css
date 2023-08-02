@@ -1,48 +1,88 @@
 #major-Menu {
-    -fx-background-color: lightblue;
+    -fx-background-color: lightgrey;
     -fx-spacing: 20;
     -fx-padding: 20;
 }
 #semi-Menu{
-    -fx-background-color: purple;
+    -fx-background-color: lightgrey;
 }
 #top-Right-Display{
 
 }
 #bottom-Right-Display{
-    -fx-background-color: lightgreen;
+    -fx-background-color: lightgrey;
 }
 .major-Menu-Button{
-    -fx-pref-width: 150px;
-    -fx-pref-height: 40px;
+    -fx-pref-width: 170px;
+    -fx-pref-height: 200px;
     -fx-background-color: purple;
     -fx-text-fill: white;
-    -fx-font-size: 14px;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
 }
 .semi-Menu-Button{
-    -fx-pref-width: 130px;
+    -fx-pref-width: 200px;
     -fx-pref-height: 70px;
-    -fx-background-color: lightgreen;
-    -fx-text-fill: white;
+    -fx-background-color: white;
+    -fx-text-fill: black;
     -fx-font-size: 14px;
+    -fx-font-weight: bold;
 }
 
 .radio-Menu-Button{
-    -fx-pref-width: 70px;
-    -fx-pref-height: 70px;
-    -fx-background-color: lightgreen;
-    -fx-text-fill: white;
-    -fx-font-size: 10px;
+    -fx-pref-width: 100px;
+    -fx-pref-height: 90px;
+    -fx-background-color: #55565B;
+    -fx-text-fill: black;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
 }
 
-.major-Menu-Button:clicked{
-    -fx-background-color: white;
+.major-Menu-Button:armed, .major-Menu-Button:focused{
+    -fx-background-color: black;
 }
 
 .label-Display{
     -fx-background-color: #f0f0f0;
     -fx-padding: 5px;
     -fx-text-fill: black;
-    -fx-font-size: 14;
+    -fx-font-size: 15;
     -fx-font-family: "Arial";
+    -fx-font-weight: bold;
+}
+.payment-Pane{
+    -fx-background-color: lightblue;
+}
+
+.payment-Buttons{
+    -fx-background-color: #55565B;
+    -fx-pref-width: 100px;
+    -fx-pref-height: 90px;
+    -fx-font-size: 15px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.payment-Button{
+    -fx-background-color: #52B640;
+    -fx-text-fill: black;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+.total-Text{
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+}
+.paymentTexts{
+     -fx-font-weight: bold;
+     -fx-font-size: 16px;
+}
+.enterMoneyPrompt{
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+}
+.errorTexts{
+    -fx-text-fill:white;
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
 }

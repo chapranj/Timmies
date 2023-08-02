@@ -1,0 +1,10 @@
+majorButtons,Hot Drinks,Cold Drinks,Hot Breakfast,Bakery,Lunch,Snacks & Sweets,Oatmeal & Yogurt
+semiHot,Short ,Tall ,Grande ,Venti ,
+semisemiHot,Caffe Misto,Caffe Americano,Americano Misto,Cappuccino,Hot Chocolate,WhiteHot Chocolate
+semiCold,Tall ,Grande ,Venti ,
+semisemiCold,Iced Caffe Americano,Iced Coffee,Caramel Frappuccino,JavaChip Frappuccino
+food1,Beyond Meat Sandwich,Bacon Gouda Sandwich,Sausage Cheddar Sandwich,Southwest Potato Wrap
+food2,Everything Bagel,DoubleChoc Brownie,Chocolate Chunk Cookie,Ginger Molasses Cookie
+food3,Ham&Swiss Baguette,Chicken&Bacon Brioche,Crispy Grilled Cheese Sourdough
+food4,Madeleines,Starbucks Espresso Beans
+food5,Rolled&Steel-Cut Oatmeal

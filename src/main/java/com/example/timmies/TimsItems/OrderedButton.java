@@ -40,6 +40,11 @@ public class OrderedButton {
     public String toString() {
         return this.itemName+"  -------   "+this.itemPrice;
     }
+    public void checkTotal(){
+        if (ButtonClassHC.orderedItems.isEmpty()){
+            ButtonClassHC.calcTotal = 0;
+        }
+    }
     public Label makeButton(){
         orderedLabel = new Label(this.toString());
         orderedLabel.getStyleClass().add("label-Display");

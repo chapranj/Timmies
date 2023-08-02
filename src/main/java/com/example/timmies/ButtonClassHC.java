@@ -4,6 +4,7 @@ import com.example.timmies.TimsItems.OrderedButton;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
@@ -15,6 +16,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.lang.reflect.Array;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -22,15 +24,21 @@ import java.util.concurrent.Flow;
 
 
 public class ButtonClassHC extends TimsPosHC {
-    public static double calcTotal;
+    public static double calcTotal=0;
 
     public static String toConc;
 
     public static ToggleGroup sMLX = new ToggleGroup();
 
+    public static Button cancelButton;
+    public static String filename= "starbucks.txt";
+    public static String priceFileName="priceStarbucks.txt";
+    public static String titleName="Starbucks";
+
 
     public static ArrayList<OrderedButton> orderedItems = new ArrayList<>();
-
+    public static Text totalTillNow= new Text("Total: ");
+    public static DecimalFormat deciFor= new DecimalFormat("#.00");
 
     public ButtonClassHC() throws FileNotFoundException {
     }
@@ -39,7 +47,7 @@ public class ButtonClassHC extends TimsPosHC {
     public static HashMap <String, Integer> buttonIndex =  new HashMap<>();
 
     public static void readPrices() throws FileNotFoundException {
-        File prices= new File("prices.txt");
+        File prices= new File(priceFileName);
         Scanner pReader = new Scanner(prices);
 
         while(pReader.hasNextLine()) {
@@ -58,11 +66,10 @@ public class ButtonClassHC extends TimsPosHC {
 
 
     public static VBox majorMenuButtonCreation() throws FileNotFoundException {
-        TimsPosHC.bottomRightDisplay.getChildren().add(toPay);
-        toPay.setDisable(true);
+        totalTillNow.getStyleClass().add("total-Text");
         int majorButtonIndex = 0;
         VBox majorButtonContainer = new VBox();
-        File f = new File("menuSmall.txt");
+        File f = new File(filename);
         Scanner reader = new Scanner(f);
         while(reader.hasNextLine()){
             String line = reader.nextLine();
@@ -92,6 +99,7 @@ public class ButtonClassHC extends TimsPosHC {
                     majorButtonIndex++;
                 }
                 majorButtonContainer.getChildren().addAll(majorButtonList);
+                System.out.println("total: "+calcTotal);
 
             }
         }
@@ -103,7 +111,7 @@ public class ButtonClassHC extends TimsPosHC {
 
     public static VBox hotDrinkButtonHandler() throws FileNotFoundException {
         TimsPosHC.semiMenu.getChildren().clear();
-        File f= new File("menuSmall.txt");
+        File f= new File(filename);
         Scanner reader= new Scanner(f);
         HBox smallMediumContainer = new HBox();
         VBox coffeeFrenchHotChocContainer = new VBox();
@@ -124,9 +132,12 @@ public class ButtonClassHC extends TimsPosHC {
                     semiHotBtn.setToggleGroup(sMLX);
                     semiHotBtn.getStyleClass().add("radio-Menu-Button");
 
-                    if (semiHotBtn.getText().equals("Medium ")){
+                    if (i==1){
                         semiHotBtn.setSelected(true);
                     }
+
+//                    semiHotbuttonsList.get(1).setSelected(true);
+
                     if (semiHotBtn.isSelected()){
                         toConc = semiHotBtn.getText();
                     }
@@ -146,6 +157,7 @@ public class ButtonClassHC extends TimsPosHC {
                 }
                 smallMediumContainer.getChildren().addAll(semiHotbuttonsList);
                 smallMediumContainer.setSpacing(10);
+
             }
             if (btnTexts[0].equals("semisemiHot")) {
                 ArrayList<Button> semisemiHotButtonsList = new ArrayList<>();
@@ -165,7 +177,7 @@ public class ButtonClassHC extends TimsPosHC {
 
                                 OrderedButton orderedButton = new OrderedButton(toConc,value);
                                 Label addedLabel= orderedButton.makeButton();
-                                Button cancelButton = new Button("Cancel");
+                                cancelButton = new Button("Cancel");
                                 addedLabel.getStyleClass().add("");
                                 addedLabel.setGraphic(cancelButton);
                                 addedLabel.setGraphicTextGap(10);
@@ -176,19 +188,24 @@ public class ButtonClassHC extends TimsPosHC {
 
                                 System.out.println();
                                 System.out.println(calcTotal);
+                                setTotalTillNow();
                                 cancelButton.setOnAction(ev->{
                                     TimsPosHC.topRightbox.getChildren().remove(addedLabel);
                                     calcTotal-=orderedButton.itemPrice;
                                     System.out.println(calcTotal);
                                     orderedItems.remove(orderedButton);
-                                    paymentButtonCheck();
+                                    PaymentHandler.paymentButtonCheck();
+//                                    if(orderedItems.size()==0)
+//                                        calcTotal = 0;
+//                                    System.out.println("total: "+calcTotal);
+                                    PaymentHandler.checkForPaymentContainer();
+                                    setTotalTillNow();
+
                                 });
-                                System.out.println(paymentButtonCheck());
+                                System.out.println(PaymentHandler.paymentButtonCheck());
 
                                 System.out.println(orderedItems.toString());
-
                                 toConc="";
-
                             }
                         }
 
@@ -212,7 +229,7 @@ public class ButtonClassHC extends TimsPosHC {
 
     public static VBox coldDrinkButtonHandler() throws FileNotFoundException {
         TimsPosHC.semiMenu.getChildren().clear();
-        File f= new File("menuSmall.txt");
+        File f= new File(filename);
         Scanner reader= new Scanner(f);
         HBox smallMediumContainerForCold = new HBox();
         VBox iceCoffeIceCappQuenchContainer = new VBox();
@@ -229,7 +246,7 @@ public class ButtonClassHC extends TimsPosHC {
                     semiColdBtn.setToggleGroup(sMLXforCold);
                     semiColdbuttonsList.add(semiColdBtn);
 
-                    if (semiColdBtn.getText().equals("Medium ")){
+                    if (i==1){
                         semiColdBtn.setSelected(true);
                     }
 
@@ -273,7 +290,7 @@ public class ButtonClassHC extends TimsPosHC {
 
                                 OrderedButton orderedButton = new OrderedButton(toConc,value);
                                 Label addedLabel= orderedButton.makeButton();
-                                Button cancelButton = new Button("Cancel");
+                                cancelButton = new Button("Cancel");
                                 addedLabel.setGraphic(cancelButton);
                                 addedLabel.setGraphicTextGap(10);
                                 addedLabel.setContentDisplay(ContentDisplay.RIGHT);
@@ -282,13 +299,18 @@ public class ButtonClassHC extends TimsPosHC {
                                 orderedItems.add(orderedButton);
                                 System.out.println();
                                 System.out.println(calcTotal);
+                                setTotalTillNow();
                                 cancelButton.setOnAction(ev->{
                                     TimsPosHC.topRightbox.getChildren().remove(addedLabel);
                                     calcTotal-=orderedButton.itemPrice;
                                     System.out.println(calcTotal);
                                     orderedItems.remove(orderedButton);
+                                    PaymentHandler.paymentButtonCheck();
+                                    PaymentHandler.checkForPaymentContainer();
+                                    setTotalTillNow();
                                 });
                                 System.out.println(orderedItems.toString());
+                                PaymentHandler.paymentButtonCheck();
 
                                 toConc="";
 
@@ -320,7 +342,7 @@ public class ButtonClassHC extends TimsPosHC {
     public static VBox food1ButtonHandler() throws FileNotFoundException {
         System.out.println("food1 pressed");
         TimsPosHC.semiMenu.getChildren().clear();
-        File f= new File("menuSmall.txt");
+        File f= new File(filename);
         Scanner reader= new Scanner(f);
         VBox wholeFood1SemiContainer= new VBox(20);
         while(reader.hasNextLine()){
@@ -344,7 +366,7 @@ public class ButtonClassHC extends TimsPosHC {
 
                             OrderedButton orderedButton= new OrderedButton(toConc,value);
                             Label addedLabel = orderedButton.makeButton();
-                            Button cancelButton = new Button("Cancel");
+                            cancelButton = new Button("Cancel");
                             addedLabel.setGraphic(cancelButton);
                             addedLabel.setGraphicTextGap(10);
                             addedLabel.setContentDisplay(ContentDisplay.RIGHT);
@@ -353,13 +375,18 @@ public class ButtonClassHC extends TimsPosHC {
                             orderedItems.add(orderedButton);
                             System.out.println();
                             System.out.println(calcTotal);
+                            setTotalTillNow();
                             cancelButton.setOnAction(eve->{
                                 TimsPosHC.topRightbox.getChildren().remove(addedLabel);
                                 calcTotal-=orderedButton.itemPrice;
                                 System.out.println(calcTotal);
                                 orderedItems.remove(orderedButton);
+                                PaymentHandler.paymentButtonCheck();
+                                PaymentHandler.checkForPaymentContainer();
+                                setTotalTillNow();
                             });
                             System.out.println(orderedItems.toString());
+                            PaymentHandler.paymentButtonCheck();
 
                         }
                     });
@@ -367,6 +394,7 @@ public class ButtonClassHC extends TimsPosHC {
 
                 }
                 wholeFood1SemiContainer.getChildren().addAll(food1ButtonsList);
+
             }
         }
         return wholeFood1SemiContainer;
@@ -375,7 +403,7 @@ public class ButtonClassHC extends TimsPosHC {
 
     public static VBox food2ButtonHandler() throws FileNotFoundException {
         TimsPosHC.semiMenu.getChildren().clear();
-        File f= new File("menuSmall.txt");
+        File f= new File(filename);
         Scanner reader= new Scanner(f);
         VBox wholeFood2SemiContainer= new VBox(20);
         while(reader.hasNextLine()){
@@ -398,7 +426,7 @@ public class ButtonClassHC extends TimsPosHC {
 
                             OrderedButton orderedButton= new OrderedButton(toConc,value);
                             Label addedLabel = orderedButton.makeButton();
-                            Button cancelButton = new Button("Cancel");
+                            cancelButton = new Button("Cancel");
                             addedLabel.setGraphic(cancelButton);
                             addedLabel.setGraphicTextGap(10);
                             addedLabel.setContentDisplay(ContentDisplay.RIGHT);
@@ -407,12 +435,18 @@ public class ButtonClassHC extends TimsPosHC {
                             orderedItems.add(orderedButton);
                             System.out.println();
                             System.out.println(calcTotal);
+                            setTotalTillNow();
                             cancelButton.setOnAction(eve->{
                                 TimsPosHC.topRightbox.getChildren().remove(addedLabel);
                                 calcTotal-=orderedButton.itemPrice;
                                 System.out.println(calcTotal);
                                 orderedItems.remove(orderedButton);
+                                PaymentHandler.paymentButtonCheck();
+                                PaymentHandler.checkForPaymentContainer();
+                                setTotalTillNow();
                             });
+                            PaymentHandler.paymentButtonCheck();
+
 
                         }
                     });
@@ -430,7 +464,7 @@ public class ButtonClassHC extends TimsPosHC {
 
     public static VBox food3ButtonHandler() throws FileNotFoundException {
         TimsPosHC.semiMenu.getChildren().clear();
-        File f= new File("menuSmall.txt");
+        File f= new File(filename);
         Scanner reader= new Scanner(f);
         VBox wholeFood3SemiContainer= new VBox(20);
         while(reader.hasNextLine()){
@@ -462,12 +496,17 @@ public class ButtonClassHC extends TimsPosHC {
                             orderedItems.add(orderedButton);
                             System.out.println();
                             System.out.println(calcTotal);
+                            setTotalTillNow();
                             cancelButton.setOnAction(eve->{
                                 TimsPosHC.topRightbox.getChildren().remove(addedLabel);
                                 calcTotal-=orderedButton.itemPrice;
                                 System.out.println(calcTotal);
                                 orderedItems.remove(orderedButton);
+                                PaymentHandler.paymentButtonCheck();
+                                PaymentHandler.checkForPaymentContainer();
+                                setTotalTillNow();
                             });
+                            PaymentHandler.paymentButtonCheck();
 
                         }
                     });
@@ -484,7 +523,7 @@ public class ButtonClassHC extends TimsPosHC {
 
     public static VBox food4ButtonHandler() throws FileNotFoundException {
         TimsPosHC.semiMenu.getChildren().clear();
-        File f= new File("menuSmall.txt");
+        File f= new File(filename);
         Scanner reader= new Scanner(f);
         VBox wholeFood4SemiContainer= new VBox(20);
         while(reader.hasNextLine()){
@@ -516,12 +555,17 @@ public class ButtonClassHC extends TimsPosHC {
                             orderedItems.add(orderedButton);
                             System.out.println();
                             System.out.println(calcTotal);
+                            setTotalTillNow();
                             cancelButton.setOnAction(eve->{
                                 TimsPosHC.topRightbox.getChildren().remove(addedLabel);
                                 calcTotal-=orderedButton.itemPrice;
                                 orderedItems.remove(orderedButton);
                                 System.out.println(calcTotal);
+                                PaymentHandler.paymentButtonCheck();
+                                PaymentHandler.checkForPaymentContainer();
+                                setTotalTillNow();
                             });
+                            PaymentHandler.paymentButtonCheck();
 
                         }
                     });
@@ -537,7 +581,7 @@ public class ButtonClassHC extends TimsPosHC {
     }
     public static VBox food5ButtonHandler() throws FileNotFoundException {
         TimsPosHC.semiMenu.getChildren().clear();
-        File f= new File("menuSmall.txt");
+        File f= new File(filename);
         Scanner reader= new Scanner(f);
         VBox wholeFood5SemiContainer= new VBox(20);
         while(reader.hasNextLine()){
@@ -569,12 +613,17 @@ public class ButtonClassHC extends TimsPosHC {
                             orderedItems.add(orderedButton);
                             System.out.println();
                             System.out.println(calcTotal);
+                            setTotalTillNow();
                             cancelButton.setOnAction(eve->{
                                 TimsPosHC.topRightbox.getChildren().remove(addedLabel);
                                 calcTotal-=orderedButton.itemPrice;
                                 System.out.println(calcTotal);
                                 orderedItems.remove(orderedButton);
+                                PaymentHandler.paymentButtonCheck();
+                                PaymentHandler.checkForPaymentContainer();
+                                setTotalTillNow();
                             });
+                            PaymentHandler.paymentButtonCheck();
 
                         }
                     });
@@ -588,7 +637,7 @@ public class ButtonClassHC extends TimsPosHC {
 
     public static VBox food6ButtonHandler() throws FileNotFoundException {
         TimsPosHC.semiMenu.getChildren().clear();
-        File f= new File("menuSmall.txt");
+        File f= new File(filename);
         Scanner reader= new Scanner(f);
         VBox wholeFood6SemiContainer= new VBox(20);
         while(reader.hasNextLine()){
@@ -619,12 +668,17 @@ public class ButtonClassHC extends TimsPosHC {
                             orderedItems.add(orderedButton);
                             System.out.println();
                             System.out.println(calcTotal);
+                            setTotalTillNow();
                             cancelButton.setOnAction(eve->{
                                 TimsPosHC.topRightbox.getChildren().remove(addedLabel);
                                 calcTotal-=orderedButton.itemPrice;
                                 System.out.println(calcTotal);
                                 orderedItems.remove(orderedButton);
+                                PaymentHandler.paymentButtonCheck();
+                                PaymentHandler.checkForPaymentContainer();
+                                setTotalTillNow();
                             });
+                            PaymentHandler.paymentButtonCheck();
 
                         }
                     });
@@ -640,7 +694,7 @@ public class ButtonClassHC extends TimsPosHC {
 
     public static VBox food7ButtonHandler() throws FileNotFoundException {
         TimsPosHC.semiMenu.getChildren().clear();
-        File f= new File("menuSmall.txt");
+        File f= new File(filename);
         Scanner reader= new Scanner(f);
         VBox wholeFood7SemiContainer= new VBox(20);
         while(reader.hasNextLine()){
@@ -672,12 +726,18 @@ public class ButtonClassHC extends TimsPosHC {
                             orderedItems.add(orderedButton);
                             System.out.println();
                             System.out.println(calcTotal);
+                            setTotalTillNow();
                             cancelButton.setOnAction(eve->{
                                 TimsPosHC.topRightbox.getChildren().remove(addedLabel);
                                 calcTotal-=orderedButton.itemPrice;
-                                System.out.println(calcTotal);
                                 orderedItems.remove(orderedButton);
+                                PaymentHandler.paymentButtonCheck();
+                                PaymentHandler.checkForPaymentContainer();
+                                orderedButton.checkTotal();
+                                System.out.println(calcTotal);
+                                setTotalTillNow();
                             });
+                            PaymentHandler.paymentButtonCheck();
 
                         }
                     });
@@ -690,60 +750,9 @@ public class ButtonClassHC extends TimsPosHC {
         return wholeFood7SemiContainer;
 
     }
-
-    public static boolean paymentButtonCheck(){
-        if (!orderedItems.isEmpty()){
-            System.out.println("not empty");
-            System.out.println(orderedItems);
-            toPay.setDisable(false);
-        }
-        else{
-            toPay.setDisable(true);
-        }
-        return orderedItems.isEmpty();
+    public static void setTotalTillNow(){
+        totalTillNow.setText("Total "+deciFor.format(calcTotal));
     }
-    public static void payButtonClicked() {
-//        TimsPosHC.bottomRightDisplay.getChildren().add(paymentButton);
-        FlowPane paymentContainer = new FlowPane();
-        Button cashButton = new Button("Cash");
-        Button cardButton = new Button("Card");
-        Button goBack = new Button("Back");
-        Label amtGiven = new Label("Enter amount paid: ");
-        TextField amtGivenNumber= new TextField();
-        Button proceedToPayButton = new Button("Proceed");
-        paymentContainer.getChildren().addAll(amtGiven,amtGivenNumber,proceedToPayButton);
-        FlowPane paidPane = new FlowPane();
-        cashButton.setOnAction(event->{
-            TimsPosHC.bottomRightDisplay.getChildren().add(paymentContainer);
-        });
 
 
-
-        proceedToPayButton.setOnAction(actionEvent -> {
-            if (Double.parseDouble(amtGivenNumber.getText()) >= calcTotal){
-                Text processed = new Text("Payment processed...change given "+ (Double.parseDouble(amtGivenNumber.getText())-calcTotal));
-                paidPane.getChildren().add(processed);
-                System.out.println(processed.getText());
-                try {
-                    TimsPosHC.bottomRightDisplay.getChildren().add(paidPane);
-                }catch (Exception e){
-                    System.out.println("pressed again should not do it! ");
-                }
-                for (OrderedButton ord: orderedItems){
-                    System.out.println(ord);
-                }
-            }
-        });
-
-
-
-        semiMenu.getChildren().clear();
-        semiMenu.getChildren().add(cashButton);
-        semiMenu.getChildren().add(cardButton);
-        semiMenu.getChildren().add(goBack);
-
-
-        System.out.println("Pay");
-
-    }
 }

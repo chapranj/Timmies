@@ -1,0 +1,51 @@
+Short Caffe Misto,3.45
+Tall Caffe Misto,3.55
+Grande Caffe Misto,3.75
+Venti Caffe Misto,4.25
+Short Caffe Americano,2.49
+Tall Caffe Americano,2.79
+Grande Caffe Americano,2.99
+Venti Caffe Americano,3.29
+Short Americano Misto,1.69
+Tall Americano Misto,1.89
+Grande Americano Misto,2.19
+Venti Americano Misto,2.49
+Short Cappuccino,2.19
+Tall Cappuccino,2.49
+Grande Cappuccino,2.79
+Venti Cappuccino,2.99
+Short Hot Chocolate,2.29
+Tall Hot Chocolate,2.59
+Grande Hot Chocolate,2.89
+Venti Hot Chocolate,2.29
+Short WhiteHot Chocolate,2.59
+Tall WhiteHot Chocolate,2.89
+Grande WhiteHot Chocolate,2.29
+Venti WhiteHot Chocolate,2.99
+Tall Iced Caffe Americano,3.49
+Grande Iced Caffe Americano,2.49
+Venti Iced Caffe Americano,2.99
+Tall Iced Coffee,3.19
+Grande Iced Coffee,5.50
+Venti Iced Coffee,6.25
+Tall Caramel Frappuccino,4.25
+Grande Caramel Frappuccino,5.50
+Venti Caramel Frappuccino,6.00
+Tall JavaChip Frappuccino,3.25
+Grande JavaChip Frappuccino,5.50
+Venti JavaChip Frappuccino,6.25
+Beyond Meat Sandwich,6.25
+Bacon Gouda Sandwich,6.25
+Sausage Cheddar Sandwich,6.25
+Southwest Potato Wrap,6.25
+Everything Bagel,6.25
+DoubleChoc Brownie,6.25
+Brownie,6.25
+Chocolate Chunk Cookie,6.25
+Ginger Molasses Cookie,6.25
+Ham&Swiss Baguette,6.25
+Chicken&Bacon Brioche,6.25
+Crispy Grilled Cheese Sourdough,6.25
+Madeleines,6.25
+Starbucks Espresso Beans,6.25
+Rolled&Steel-Cut Oatmeal,6.25
